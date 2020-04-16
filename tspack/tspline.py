@@ -53,7 +53,7 @@ def tspsi(x, y, ncd=2, slopes=None, curvs=None, per=0, tension=None):
     wk, yp, sigma, ier = tspack.tspsi(x, y, ncd, iendc, per, unifrm, wk, yp, sigma)
 
     if ier >= 0:
-        return ((x, y, yp, sigma))
+        return ((x, y, yp, sigma, ))
     elif ier == -1:
         raise RuntimeError("Error, N, NCD or IENDC outside valid range")
     elif ier == -2:

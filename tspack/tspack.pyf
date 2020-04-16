@@ -85,16 +85,16 @@ python module tspack ! in
 !            integer :: ier
 !            double precision :: hpval
 !        end function hpval
-!        function hval(t,n,x,y,yp,sigma,ier) ! in :tspack:tspack.f
-!            double precision :: t
-!            integer optional,check(len(x)>=n),depend(x) :: n=len(x)
-!            double precision dimension(n) :: x
-!            double precision dimension(n),depend(n) :: y
-!            double precision dimension(n),depend(n) :: yp
-!            double precision dimension(n),depend(n) :: sigma
-!            integer :: ier
-!            double precision :: hval
-!        end function hval
+        function hval(t,n,x,y,yp,sigma,ier) ! in :tspack:tspack.f
+            double precision :: t
+            integer optional,check(len(x)>=n),depend(x) :: n=len(x)
+            double precision dimension(n) :: x
+            double precision dimension(n),depend(n) :: y
+            double precision dimension(n),depend(n) :: yp
+            double precision dimension(n),depend(n) :: sigma
+            integer :: ier
+            double precision :: hval
+        end function hval
 !        function intrvl(t,n,x) ! in :tspack:tspack.f
 !            double precision :: t
 !            integer optional,check(len(x)>=n),depend(x) :: n=len(x)
