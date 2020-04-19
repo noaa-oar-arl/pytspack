@@ -1,4 +1,4 @@
-! Left off at tsval1
+tspack! Left off at tsval1
 !    -*- f90 -*-
 ! Note: the context of this file is case sensitive.
 
@@ -385,7 +385,7 @@ python module tspack ! in
 !            double precision :: sd
 !        end subroutine ypcoef
     end interface
-end python module tspack
+end python module tension
 
 ! This file was auto-generated with f2py (version:2.45.241_1926).
 ! See http://cens.ioc.ee/projects/f2py2e/

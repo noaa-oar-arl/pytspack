@@ -1,10 +1,64 @@
-from __future__ import print_function
-
+import numpy as np
 import tspack
-from numpy import *
 
 
-def tspsi(x, y, ncd=2, slopes=None, curvs=None, per=0, tension=None):
+def hval(xp, x, y, sigma):
+    """Function which evaluates a Hermite interpolatory ten-
+    sion spline at a specified point.
+
+    Parameters
+    ----------
+    xp : numpy array or list
+        xp is the values which hval interpolate to.
+    x : numpy array or list
+        x is the original values of the array.
+    y : numpy array or list
+        y is the predicted value of the array.
+    sigma : array
+        Description of parameter `sigma`.
+
+    Returns
+    -------
+    yp : numpy array
+        Predicted y values at xp
+
+    """
+    xp = array(xp)
+    x = array(x)
+    y = array(y)
+    sigma = array(sigma)
+    yp = [tspack.hval(xi, xx, yy, yp, sigma, 1) for xi in xp]
+    return yp
+
+
+def tspsi(x, y, ncd=1, slopes=None, curvs=None, per=0, tension=None):
+    """Subroutine which constructs a shape-preserving or
+      unconstrained interpolatory function.  Refer to
+      TSVAL1.
+
+    Parameters
+    ----------
+    x : numpy array or list
+        x is the original values of the array.
+    y : type
+        Description of parameter `y`.
+    ncd : type
+        Description of parameter `ncd`.
+    slopes : type
+        Description of parameter `slopes`.
+    curvs : type
+        Description of parameter `curvs`.
+    per : type
+        Description of parameter `per`.
+    tension : type
+        Description of parameter `tension`.
+
+    Returns
+    -------
+    type
+        Description of returned object.
+
+    """
     # Figure out the parameters that need to go into the FORTRAN procedure.
     # First, what iendc is:
     yp = 0.0 * x
@@ -53,7 +107,7 @@ def tspsi(x, y, ncd=2, slopes=None, curvs=None, per=0, tension=None):
     wk, yp, sigma, ier = tspack.tspsi(x, y, ncd, iendc, per, unifrm, wk, yp, sigma)
 
     if ier >= 0:
-        return ((x, y, yp, sigma, ))
+        return ((x, y, yp, sigma))
     elif ier == -1:
         raise RuntimeError("Error, N, NCD or IENDC outside valid range")
     elif ier == -2:
