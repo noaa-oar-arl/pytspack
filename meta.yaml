@@ -1,0 +1,36 @@
+{% set name = "pytspack" %}
+{% set version = "0.1" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/noaa-oar-arl/pytspack
+  sha256: 9329c5103c8dbb51d5146824d608a7be9d7250c7f299ca9ccc1562ea188df051
+build:
+  number: 0
+  script: "{{ PYTHON }} -m pip install . --no-deps -vv"
+
+requirements:
+  build:
+    - {{ compiler('fortran') }}
+    - python >=3.6
+  host:
+    - python
+    - pip
+  run:
+    - python
+    - numpy
+
+about:
+  home: https://github.com/noaa-oar-arl/{{ name }}
+  license: MIT License
+  license_family: MIT
+  license_file: LICENSE
+  summary: Python interface for Robert J. Renka's fortran TSPACK: Tension Spline Curve Fitting Package
+  doc_url: https://monet-arl.readthedocs.io
+
+extra:
+  recipe-maintainers:
+    - bbakernoaa
