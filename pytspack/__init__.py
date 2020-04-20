@@ -1,5 +1,5 @@
-import numpy as np
 import tspack
+from numpy import array, zeros
 
 
 def hval(xp, x, y, sigma):
