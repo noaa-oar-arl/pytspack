@@ -1,7 +1,7 @@
 from numpy.distutils.core import Extension
 
-ext2 = Extension(name='tension',
-                 sources=['pytspack/tension.pyf', 'pytspack/tension.f'])
+ext2 = Extension(name='tspack',
+                 sources=['pytspack/tspack.pyf', 'pytspack/tspack.f'])
 
 if __name__ == "__main__":
     from numpy.distutils.core import setup
