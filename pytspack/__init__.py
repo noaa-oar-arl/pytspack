@@ -27,8 +27,8 @@ def hval(xp, x, y, sigma):
     x = array(x)
     y = array(y)
     sigma = array(sigma)
-    yp = [tspack.hval(xi, x, y, yp, sigma, 1) for xi in xp]
-    return yp
+    y_out = [tspack.hval(xi, x, y, yp, sigma, 1) for xi in xp]
+    return y_out
 
 
 def tspsi(x, y, ncd=1, slopes=None, curvs=None, per=0, tension=None):
