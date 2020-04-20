@@ -2,7 +2,7 @@ import tspack
 from numpy import array, zeros
 
 
-def hval(xp, x, y, sigma):
+def hval(xp, x, y, yp, sigma):
     """Function which evaluates a Hermite interpolatory ten-
     sion spline at a specified point.
 
