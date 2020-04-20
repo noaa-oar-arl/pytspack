@@ -27,7 +27,7 @@ def hval(xp, x, y, sigma):
     x = array(x)
     y = array(y)
     sigma = array(sigma)
-    yp = [tspack.hval(xi, xx, yy, yp, sigma, 1) for xi in xp]
+    yp = [tspack.hval(xi, x, y, yp, sigma, 1) for xi in xp]
     return yp
 
 
