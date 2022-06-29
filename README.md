@@ -62,10 +62,8 @@ OPT='-std=c99' python -m numpy.f2py -c -m tspack tspack.f
 ```
 to configure `gcc`.
 
-`OPT='-std=c99'` can also be added to the pip install:
-```bash
-OPT='-std=c99' pip install https://github.com/noaa-oar-arl/pytspack/archive/master.zip --no-deps
-```
+`OPT='-std=c99'` can also be prepended to [the `pip install` above](#installation),
+enabling an installation without cloning the repo.
 
 
 [^a]: As mentioned [here](https://mfix.netl.doe.gov/forum/t/strange-build-error-in-mfix-21-4/3923/3), for example.
