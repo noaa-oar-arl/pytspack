@@ -50,7 +50,7 @@ setup, try the following:
 
 ### Linux
 
-We have seen some issues where some `gcc`s do not want to compile the `fortranobject.c`.
+We have seen some issues where some `gcc`s do not want to compile the `fortranobject.c` [^a]
 
 Follow the same general steps as above, but don't use `--compiler=mingw32`.
 
@@ -66,6 +66,9 @@ to configure `gcc`.
 ```bash
 OPT='-std=c99' pip install https://github.com/noaa-oar-arl/pytspack/archive/master.zip --no-deps
 ```
+
+
+[^a]: As mentioned [here](https://mfix.netl.doe.gov/forum/t/strange-build-error-in-mfix-21-4/3923/3), for example.
 
 ## More information
 
