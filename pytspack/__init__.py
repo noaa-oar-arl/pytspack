@@ -1,5 +1,23 @@
-import tspack
 from numpy import array, zeros
+
+try:
+    # Installed extension module
+    import tspack
+except Exception as e1:
+    try:
+        # Locally built extension module
+        from . import tspack
+    except Exception as e2:
+        raise RuntimeWarning(
+            "Unable to import the tspack extension module. "
+            f"Attempting to import installed tspack extension module failed ({e1}). "
+            f"Attempting to import local tspack extension module failed ({e2})."
+        )
+    else:
+        print(
+            f"Attempting to import installed tspack extension module failed ({e1}). "
+            "Using local."
+        )
 
 
 def hval(xp, x, y, yp, sigma):

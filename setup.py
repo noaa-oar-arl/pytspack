@@ -1,7 +1,9 @@
 from numpy.distutils.core import Extension
 
-ext2 = Extension(name='tspack',
-                 sources=['pytspack/tspack.pyf', 'pytspack/tspack.f'])
+ext = Extension(
+    name='tspack',
+    sources=['pytspack/tspack.pyf', 'pytspack/tspack.f'],
+)
 
 if __name__ == "__main__":
     from numpy.distutils.core import setup
@@ -13,6 +15,6 @@ if __name__ == "__main__":
           author_email="barry.baker@noaa.gov",
           source=['pytspack'],
           packages=['pytspack'],
-          ext_modules=[ext2],
-          install_requires=['numpy']
+          ext_modules=[ext],
+          install_requires=['numpy'],
           )

@@ -11,14 +11,62 @@ If you are lucky,
 ```
 pip install https://github.com/noaa-oar-arl/pytspack/archive/master.zip --no-deps
 ```
-will work.
-
-On Windows, a [GNU Fortran via MSYS2](https://numpy.org/doc/stable/f2py/windows/msys2.html)
-setup is expected.
+will *just work*.
 
 Otherwise, you can clone the repo and try to build the extension module
-using [F2PY](https://numpy.org/doc/stable/f2py/index.html) manually.
+using [`f2py`](https://numpy.org/doc/stable/f2py/index.html) manually...
 
-## Citation
+### Windows
+
+On Windows, with a [GNU Fortran via MSYS2](https://numpy.org/doc/stable/f2py/windows/msys2.html)
+setup, try the following:
+
+1. Clone the repo
+   ```powershell
+   git clone https://github.com/noaa-oar-arl/pytspack
+   cd pytspack
+   ```
+
+2. Build the extension, using one of these options
+
+   Using the `setup.py`:
+   ```
+   python setup.py build_ext --fcompiler=gnu95 --compiler=mingw32 --build-lib=./pytspack
+   ```
+
+   OR
+
+   Using `f2py` directly:
+   ```powershell
+   cd pytspack
+   python -m numpy.f2py -c --fcompiler=gnu95 --compiler=mingw32 -m tspack tspack.f
+   cd ..
+   ```
+
+3. Link pytspack to your active Python environment.
+   ```powershell
+   pip install -e .
+   ```
+
+### Linux
+
+We have seen some issues where some `gcc`s do not want to compile the `fortranobject.c`.
+
+Follow the same general steps as above, but don't use `--compiler=mingw32`.
+
+On NOAA Hera, the default GCC is currently v4.
+Use `module load gnu` to get newer before attempting to install pytspack,
+or use
+```bash
+OPT='-std=c99' python -m numpy.f2py -c -m tspack tspack.f
+```
+to configure `gcc`.
+
+`OPT='-std=c99'` can also be added to the pip install:
+```bash
+OPT='-std=c99' pip install https://github.com/noaa-oar-arl/pytspack/archive/master.zip --no-deps
+```
+
+## More information
 
 For more information on TSPACK, see [the open-access paper](https://dl.acm.org/doi/10.1145/151271.151277) (Renka, 1993) or [the netlib page](http://www.netlib.no/netlib/toms/716).
