@@ -11,11 +11,10 @@ if __name__ == "__main__":
     setup(
         name="pytspack",
         version="0.1",
-        description="Wrapper around Robert J. Renka's fortran TSPACK: Tension Spline Curve Fitting Package ",
+        description="Wrapper around Robert J. Renka's fortran TSPACK: Tension Spline Curve Fitting Package",
         author="Barry D. Baker",
-        lisense="MIT",
+        license="MIT",
         author_email="barry.baker@noaa.gov",
-        source=["pytspack"],
         packages=["pytspack"],
         ext_modules=[ext],
         install_requires=["numpy"],
