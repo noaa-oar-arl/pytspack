@@ -1,5 +1,23 @@
-import tspack
 from numpy import array, zeros
+
+try:
+    # Installed extension module
+    import tspack
+except Exception as e1:
+    try:
+        # Locally built extension module
+        from . import tspack
+    except Exception as e2:
+        raise RuntimeWarning(
+            "Unable to import the tspack extension module. "
+            f"Attempting to import installed tspack extension module failed ({e1}). "
+            f"Attempting to import local tspack extension module failed ({e2})."
+        )
+    else:
+        print(
+            f"Attempting to import installed tspack extension module failed ({e1}). "
+            "Using local."
+        )
 
 
 def hval(xp, x, y, yp, sigma):
@@ -65,7 +83,9 @@ def tspsi(x, y, ncd=1, slopes=None, curvs=None, per=0, tension=None):
     sigma = 0.0 * x
 
     if slopes is not None and curvs is not None:
-        raise ValueError("You can't constrain both the slopes and curvs at the endpoints")
+        raise ValueError(
+            "You can't constrain both the slopes and curvs at the endpoints"
+        )
     if slopes is not None:
         if type(slopes) is not type([]):
             raise TypeError("slopes must be a list:  [slope0,slope1]")
@@ -102,12 +122,12 @@ def tspsi(x, y, ncd=1, slopes=None, curvs=None, per=0, tension=None):
                 lwk = len(x)
             else:
                 lwk = 2 * len(x)
-    wk = zeros((lwk,), 'd')
+    wk = zeros((lwk,), "d")
 
     wk, yp, sigma, ier = tspack.tspsi(x, y, ncd, iendc, per, unifrm, wk, yp, sigma)
 
     if ier >= 0:
-        return ((x, y, yp, sigma))
+        return (x, y, yp, sigma)
     elif ier == -1:
         raise RuntimeError("Error, N, NCD or IENDC outside valid range")
     elif ier == -2:
@@ -143,9 +163,11 @@ def tspss(x, y, w, per=0, tension=None, s=None, stol=None, full_output=0):
             lwk = 6 * len(x)
         else:
             lwk = 7 * len(x)
-    wk = zeros((lwk,), 'd')
+    wk = zeros((lwk,), "d")
 
-    wk, sigma, ys, yp, nit, ier = tspack.tspss(x, y, per, unifrm, w, s, stol, wk, sigma, ys, yp)
+    wk, sigma, ys, yp, nit, ier = tspack.tspss(
+        x, y, per, unifrm, w, s, stol, wk, sigma, ys, yp
+    )
 
     if ier == 0:
         mesg = "No errors and constraint is satisfied:  chisquare ~ s"
@@ -162,9 +184,9 @@ def tspss(x, y, w, per=0, tension=None, s=None, stol=None, full_output=0):
     elif ier == -4:
         raise RuntimeError("Error, x-values are not strictly increasing")
     if full_output:
-        return(xyds, nit, mesg)
+        return (xyds, nit, mesg)
     else:
-        return(xyds)
+        return xyds
 
 
 def tsval1(x, xydt, degree=0, verbose=0):
