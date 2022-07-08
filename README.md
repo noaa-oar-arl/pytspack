@@ -1,7 +1,6 @@
 # pytspack
 
 Python Wrapper around Robert J. Renka's [TSPACK](http://www.netlib.no/netlib/toms/716).
-TSPACK
 
 > TSPACK is a curve-fitting package based on exponential tension splines with automatic selection of tension factors.
 
@@ -11,7 +10,7 @@ If you are lucky,
 ```
 pip install https://github.com/noaa-oar-arl/pytspack/archive/master.zip --no-deps
 ```
-will *just work*.
+will *just work* (you must first have `numpy` installed).
 
 Otherwise, you can clone the repo and try to build the extension module
 using [`f2py`](https://numpy.org/doc/stable/f2py/index.html) manually...
