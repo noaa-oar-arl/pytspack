@@ -8,12 +8,21 @@ Python Wrapper around Robert J. Renka's [TSPACK](http://www.netlib.no/netlib/tom
 
 If you are lucky,
 ```
-pip install https://github.com/noaa-oar-arl/pytspack/archive/master.zip --no-deps
+pip install https://github.com/noaa-oar-arl/pytspack/archive/master.zip
 ```
-will *just work* (you must first have `numpy` installed).
+will *just work*.
+
+Alternatively, if the above [^b] fails, try
+```
+pip install https://github.com/noaa-oar-arl/pytspack/archive/master.zip --no-use-pep517 --no-deps
+```
+(you must already have `numpy` installed and currently must have `setuptools` earlier than v65).
 
 Otherwise, you can clone the repo and try to build the extension module
 using [`f2py`](https://numpy.org/doc/stable/f2py/index.html) manually...
+
+
+[^b]: [Build-time dependency specification](https://pip.pypa.io/en/stable/reference/build-system/pyproject-toml/#build-time-dependencies) via `pyproject.toml` file.
 
 ### Windows
 
@@ -44,7 +53,7 @@ setup, try the following:
 
 3. Link pytspack to your active Python environment.
    ```powershell
-   pip install -e .
+   pip install -e . --no-use-pep517
    ```
 
 ### Linux
