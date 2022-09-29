@@ -1,4 +1,8 @@
+import logging
+
 from numpy import array, zeros
+
+logger = logging.getLogger(__name__)
 
 try:
     # Installed extension module
@@ -8,16 +12,17 @@ except Exception as e1:
         # Locally built extension module
         from . import tspack
     except Exception as e2:
-        raise RuntimeWarning(
+        raise RuntimeError(
             "Unable to import the tspack extension module. "
             f"Attempting to import installed tspack extension module failed ({e1}). "
             f"Attempting to import local tspack extension module failed ({e2})."
         )
     else:
-        print(
+        msg = (
             f"Attempting to import installed tspack extension module failed ({e1}). "
             "Using local."
         )
+        logger.debug(msg)
 
 
 def hval(xp, x, y, yp, sigma):
