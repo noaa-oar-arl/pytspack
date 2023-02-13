@@ -6,6 +6,14 @@ Python Wrapper around Robert J. Renka's [TSPACK](http://www.netlib.no/netlib/tom
 
 ## Installation
 
+For NOAA Hera users:
+```
+OPT='-std=c99' pip install https://github.com/noaa-oar-arl/pytspack/archive/master.zip
+```
+or see the Linux notes [below](#linux).
+
+---
+
 If you are lucky,
 ```
 pip install https://github.com/noaa-oar-arl/pytspack/archive/master.zip
