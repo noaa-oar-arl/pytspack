@@ -86,4 +86,4 @@ enabling an installation without cloning the repo.
 
 ## More information
 
-For more information on TSPACK, see [the open-access paper](https://dl.acm.org/doi/10.1145/151271.151277) (Renka, 1993) or [the netlib page](http://www.netlib.no/netlib/toms/716).
+For more information on TSPACK, see [the open-access paper](https://dl.acm.org/doi/10.1145/151271.151277) (Renka, 1993) or [the netlib page](https://web.archive.org/web/20220701070001/http://netlib.no/netlib/toms/716).
