@@ -54,6 +54,37 @@ def hval(xp, x, y, yp, sigma):
     return y_out
 
 
+def hpval(xp, x, y, yp, sigma):
+    """Function which evaluates the first derivative of a Hermite
+    interpolatory tension spline ("HP") at points `xp`.
+
+    Parameters
+    ----------
+    xp : array_like
+        New X points at which HP is to be evaluated.
+    x : array_like
+        Original X points (abscissae).
+    y : array_like
+        Data values at the original X points.
+    yp : array_like
+        First derivatives of Y at original X points. HP(X(I)) = YP(I).
+    sigma : array_like
+        Tension factors, for each interval in the original X points
+        (as such, length N - 1).
+
+    Returns
+    -------
+    list of float
+        HP values.
+    """
+    xp = array(xp)
+    x = array(x)
+    y = array(y)
+    sigma = array(sigma)
+    yp_out = [tspack.hpval(xi, x, y, yp, sigma, 1) for xi in xp]
+    return yp_out
+
+
 def tspsi(x, y, ncd=1, slopes=None, curvs=None, per=0, tension=None):
     """Subroutine which constructs a shape-preserving or
       unconstrained interpolatory function.  Refer to
