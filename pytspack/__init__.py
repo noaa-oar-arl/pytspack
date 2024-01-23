@@ -26,25 +26,29 @@ except Exception as e1:
 
 
 def hval(xp, x, y, yp, sigma):
-    """Function which evaluates a Hermite interpolatory ten-
-    sion spline at a specified point.
+    """Function which evaluates a
+    Hermite interpolatory tension spline (H)
+    at points `xp`.
 
     Parameters
     ----------
-    xp : numpy array or list
-        xp is the values which hval interpolate to.
-    x : numpy array or list
-        x is the original values of the array.
-    y : numpy array or list
-        y is the predicted value of the array.
+    xp : array_like
+        New X points, at which H is to be evaluated.
+    x : array_like
+        Original X points (abscissae). Must be strictly increasing.
+    y : array_like
+        Data values at the original X points.
+    yp : array_like
+        First derivatives at original X points. HP(X(I)) = YP(I),
+        where HP is the derivative of H.
     sigma : array
-        Description of parameter `sigma`.
+        Tension factors, for each interval in the original X points
+        (as such, length N - 1).
 
     Returns
     -------
-    yp : numpy array
-        Predicted y values at xp
-
+    list of float
+        H values (estimates of Y(X) at new X points `xp`).
     """
     xp = array(xp)
     x = array(x)
@@ -55,19 +59,20 @@ def hval(xp, x, y, yp, sigma):
 
 
 def hpval(xp, x, y, yp, sigma):
-    """Function which evaluates the first derivative of a Hermite
-    interpolatory tension spline ("HP") at points `xp`.
+    """Function which evaluates the first derivative of a
+    Hermite interpolatory tension spline (HP)
+    at points `xp`.
 
     Parameters
     ----------
     xp : array_like
-        New X points at which HP is to be evaluated.
+        New X points, at which HP is to be evaluated.
     x : array_like
-        Original X points (abscissae).
+        Original X points (abscissae). Must be strictly increasing.
     y : array_like
         Data values at the original X points.
     yp : array_like
-        First derivatives of Y at original X points. HP(X(I)) = YP(I).
+        First derivatives at original X points. HP(X(I)) = YP(I).
     sigma : array_like
         Tension factors, for each interval in the original X points
         (as such, length N - 1).
@@ -75,7 +80,7 @@ def hpval(xp, x, y, yp, sigma):
     Returns
     -------
     list of float
-        HP values.
+        HP values (estimates of dY/dX at new X points `xp`).
     """
     xp = array(xp)
     x = array(x)
