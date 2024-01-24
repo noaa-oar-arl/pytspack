@@ -43,7 +43,8 @@ def hval(xp, x, y, yp, sigma):
         where HP is the derivative of H.
     sigma : array
         Tension factors, for each interval in the original X points
-        (as such, length N - 1).
+        (element I corresponds to the interval (I,I+1);
+        the last value in the array is not used).
 
     Returns
     -------
@@ -75,7 +76,8 @@ def hpval(xp, x, y, yp, sigma):
         First derivatives at original X points. HP(X(I)) = YP(I).
     sigma : array_like
         Tension factors, for each interval in the original X points
-        (as such, length N - 1).
+        (element I corresponds to the interval (I,I+1);
+        the last value in the array is not used).
 
     Returns
     -------
