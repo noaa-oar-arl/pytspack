@@ -26,25 +26,30 @@ except Exception as e1:
 
 
 def hval(xp, x, y, yp, sigma):
-    """Function which evaluates a Hermite interpolatory ten-
-    sion spline at a specified point.
+    """Function which evaluates a
+    Hermite interpolatory tension spline (H)
+    at points `xp`.
 
     Parameters
     ----------
-    xp : numpy array or list
-        xp is the values which hval interpolate to.
-    x : numpy array or list
-        x is the original values of the array.
-    y : numpy array or list
-        y is the predicted value of the array.
+    xp : array_like
+        New X points, at which H is to be evaluated.
+    x : array_like
+        Original X points (abscissae). Must be strictly increasing.
+    y : array_like
+        Data values at the original X points.
+    yp : array_like
+        First derivatives at original X points. HP(X(I)) = YP(I),
+        where HP is the derivative of H.
     sigma : array
-        Description of parameter `sigma`.
+        Tension factors, for each interval in the original X points
+        (element I corresponds to the interval (I,I+1);
+        the last value in the array is not used).
 
     Returns
     -------
-    yp : numpy array
-        Predicted y values at xp
-
+    list of float
+        H values (estimates of Y(X) at new X points `xp`).
     """
     xp = array(xp)
     x = array(x)
@@ -52,6 +57,39 @@ def hval(xp, x, y, yp, sigma):
     sigma = array(sigma)
     y_out = [tspack.hval(xi, x, y, yp, sigma, 1) for xi in xp]
     return y_out
+
+
+def hpval(xp, x, y, yp, sigma):
+    """Function which evaluates the first derivative of a
+    Hermite interpolatory tension spline (HP)
+    at points `xp`.
+
+    Parameters
+    ----------
+    xp : array_like
+        New X points, at which HP is to be evaluated.
+    x : array_like
+        Original X points (abscissae). Must be strictly increasing.
+    y : array_like
+        Data values at the original X points.
+    yp : array_like
+        First derivatives at original X points. HP(X(I)) = YP(I).
+    sigma : array_like
+        Tension factors, for each interval in the original X points
+        (element I corresponds to the interval (I,I+1);
+        the last value in the array is not used).
+
+    Returns
+    -------
+    list of float
+        HP values (estimates of dY/dX at new X points `xp`).
+    """
+    xp = array(xp)
+    x = array(x)
+    y = array(y)
+    sigma = array(sigma)
+    yp_out = [tspack.hpval(xi, x, y, yp, sigma, 1) for xi in xp]
+    return yp_out
 
 
 def tspsi(x, y, ncd=1, slopes=None, curvs=None, per=0, tension=None):
