@@ -10,7 +10,7 @@ if __name__ == "__main__":
 
     setup(
         name="pytspack",
-        version="0.1.2",
+        version="0.1.3",
         description="Wrapper around Robert J. Renka's fortran TSPACK: Tension Spline Curve Fitting Package",
         author="Barry D. Baker",
         license="MIT",
