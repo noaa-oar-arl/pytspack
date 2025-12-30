@@ -351,7 +351,7 @@ void ssrf_getsig(int n, double* x, double* y, double* z, double* h, int* list, i
             sig = MIN(sig, sbig);
             if (sig > sigin) {
                 SIGMA(lp1) = sig;
-                lp2 = lstptr(LEND(n2), n1, list, lptr);
+                lp2 = stri_lstptr(LEND(n2), n1, list, lptr);
                 SIGMA(lp2) = sig;
                 icnt++;
                 dsm = MAX(dsm, sig - sigin);
