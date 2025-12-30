@@ -12,3 +12,14 @@ license = {text = "MIT"}
 dependencies = [
     "numpy>=1.21.0"
 ]
+
+[project.optional-dependencies]
+docs = [
+    "mkdocs",
+    "mkdocs-material",
+    "mkdocstrings[python]",
+]
+test = [
+    "pytest",
+    "pytest-benchmark",
+]
